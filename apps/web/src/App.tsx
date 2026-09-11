@@ -75,24 +75,52 @@ export function App() {
     minute: "2-digit",
   })
 
-  const fullFormatter = new Intl.DateTimeFormat("id-ID", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  })
-
   // data checkpoint
   const checkpoints = [
     {
       id: 1,
-      name: "Check Point - HUT RI ke-81 di Kantor Cabang Larantuka",
-      lat: -8.342104,
-      lng: 122.986972,
-      formUrl: "https://forms.gle/iCFX7CNfeczzPiMC6",
-      startTime: "2026-08-17T06:00:00",
-      endTime: "2026-08-17T09:00:00",
+      name: "Check Point 01 - Hotel Palm Indah (Kegiatan Siang)",
+      lat: -8.383662,
+      lng: 123.397318,
+      formUrl: "https://forms.gle/6t69mGbRPY3AazpD7",
+      startTime: "2026-09-12T10:00:00",
+      endTime: "2026-09-12T12:00:00",
+    },
+    {
+      id: 2,
+      name: "Check Point 02 - Hotel Palm Indah (Kegiatan Malam)",
+      lat: -8.383662,
+      lng: 123.397318,
+      formUrl: "https://forms.gle/vSYDU8or5q6aNK9B6",
+      startTime: "2026-09-12T17:00:00",
+      endTime: "2026-09-12T17:30:00",
+    },
+    {
+      id: 3,
+      name: "Check Point 03 - Hotel Palm Indah (Pulang)",
+      lat: -8.383662,
+      lng: 123.397318,
+      formUrl: "https://forms.gle/M8ARLRGMCNEPvTMU8",
+      startTime: "2026-09-13T09:00:00",
+      endTime: "2026-09-13T10:00:00",
+    },
+    {
+      id: 4,
+      name: "Check Point 03 - Hotel Lembata Indah (Pulang)",
+      lat: -8.375610,
+      lng: 123.415737,
+      formUrl: "https://forms.gle/M8ARLRGMCNEPvTMU8",
+      startTime: "2026-09-13T09:00:00",
+      endTime: "2026-09-13T10:00:00",
+    },
+    {
+      id: 5,
+      name: "Check Point 03 - Hotel Olympic (Pulang)",
+      lat: -8.372069,
+      lng: 123.413622,
+      formUrl: "https://forms.gle/M8ARLRGMCNEPvTMU8",
+      startTime: "2026-09-13T09:00:00",
+      endTime: "2026-09-13T10:00:00",
     },
   ]
 
@@ -102,7 +130,7 @@ export function App() {
 
         {/* HEADER */}
         <div className="flex items-center justify-between">
-          <img src="/img/ri.png" className="h-15 w-15 object-contain" />
+          <img src="/img/bcf.png" className="h-15 w-15 object-contain" />
           <div>
             <h1 className="text-lg font-bold text-center">
               Branch Office Larantuka
@@ -110,6 +138,7 @@ export function App() {
           </div>
           <img src="/img/bri.png" className="h-15 w-15 object-contain" />
         </div>
+        <img src="/img/poster.jpeg" className="h-full object-contain" />
 
         {/* LIST CHECKPOINT */}
         {checkpoints.map((cp) => {
@@ -142,24 +171,25 @@ export function App() {
                 </ItemTitle>
 
                 <ItemDescription className="mt-1 text-xs line-clamp-5">
-                  <div>{cp.lat}, {cp.lng}</div>
+                  <div><b>Koordinat:</b> {cp.lat}, {cp.lng}</div>
 
                   <div>
-                    Jarak:{" "}
+                    <b>Jarak:</b>{" "}
                     {distance !== null
                       ? `${distance.toFixed(1)} meter`
                       : "Mengambil lokasi..."}
                   </div>
 
                   <div>
-                    Waktu:{" "}
+                    <b>Tanggal:</b>{" "}
                     {sameDay
-                      ? `${dateFormatter.format(start)} ${timeFormatter.format(
-                          start
-                        )} - ${timeFormatter.format(end)}`
-                      : `${fullFormatter.format(start)} - ${fullFormatter.format(
-                          end
-                        )}`}
+                      ? dateFormatter.format(start)
+                      : `${dateFormatter.format(start)} - ${dateFormatter.format(end)}`}
+                  </div>
+
+                  <div>
+                    <b>Waktu:</b>{" "}
+                    {`${timeFormatter.format(start)} - ${timeFormatter.format(end)} WITA`}
                   </div>
                 </ItemDescription>
               </ItemContent>
